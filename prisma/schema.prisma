@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+// using Clerk as the single-source-of-truth for users - using ID to check Clerk's data.
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clerkId String  @unique
+  email   String  @unique
+  entries Entry[] // one to many relationship
+}
+
+model Entry {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  content String @db.Text // for longer content inside mySQL 
+
+  analysis Analysis? // 1-to-1 relationship. Optional because Entry is required, so if Analysis is not optional, we cannot create either.
+
+  @@index([userId]) // indexing userId because relationMode="prisma" is used and we need to generate the foreign key
+}
+
+model Analysis {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  entryId String
+  entry   Entry  @relation(fields: [entryId], references: [id])
+
+  mood     String
+  summary  String  @db.Text
+  color    String
+  negative Boolean
+
+  @@unique([entryId]) // 1-to-1 relationship, so we need to make sure there is only one Analysis per Entry
+}
