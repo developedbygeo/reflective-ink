@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useWillChange, useReducedMotion } from 'framer-motion';
+import { motion, useWillChange } from 'framer-motion';
 
 import { gradientMovement } from '@/animations/movement';
 import { CommonProps } from '@/types/UI';
@@ -10,7 +10,6 @@ type MovingGradientProps = CommonProps & {
 };
 
 const MovingGradient = ({ children, className }: MovingGradientProps) => {
-  const prefersReducedMotion = useReducedMotion();
   const willChange = useWillChange();
 
   const isDark = 'light';
