@@ -1,12 +1,14 @@
+'use client';
+
 import { forwardRef } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 
 import { cva, type VariantProps } from 'class-variance-authority';
 
-import classnameJoin from '@/lib/utils';
+import classnameJoin from '@/utils/ui';
 
 const buttonVariants = cva(
-  'inline-flex items-center active:scale-95 justify-center rounded-md text-sm font-medium transition-[transform_colors] duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-stone-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-stone-300 font-display',
+  'inline-flex items-center active:scale-95 justify-center rounded-md text-sm font-medium transition-[transform_colors] duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-stone-950 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-stone-300 font-display cursor-pointer',
   {
     variants: {
       variant: {
