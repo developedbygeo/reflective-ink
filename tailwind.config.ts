@@ -24,7 +24,8 @@ module.exports = {
         display: ['var(--font-open)'],
       },
       colors: {
-        darkGray: '#121212',
+        darkGray: '#292929',
+        darkerGray: '#121212',
       },
       keyframes: {
         'accordion-down': {
