@@ -1,7 +1,7 @@
 import { SignIn } from '@clerk/nextjs';
 
 import MovingGradient from '@/components/UI/MovingGradient';
-import { authDialogueStyle } from '@/common/authStyling';
+import { authDialogueStyle } from '@/common/clerkStyling';
 
 const SignInPage = () => {
   return (
