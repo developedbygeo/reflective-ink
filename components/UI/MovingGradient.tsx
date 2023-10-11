@@ -3,11 +3,9 @@
 import { motion, useWillChange } from 'framer-motion';
 
 import { gradientMovement } from '@/animations/movement';
-import { CommonProps } from '@/types/UI';
+import { CommonProps, WithChildren } from '@/types/UI';
 
-type MovingGradientProps = CommonProps & {
-  children?: React.ReactNode;
-};
+type MovingGradientProps = CommonProps & WithChildren;
 
 const MovingGradient = ({ children, className }: MovingGradientProps) => {
   const willChange = useWillChange();
