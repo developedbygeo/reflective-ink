@@ -17,3 +17,8 @@
     @apply font-sans;
   }
 }
+@layer components {
+  .h-screen-minus-header {
+    height: calc(100vh - 4rem);
+  }
+}
