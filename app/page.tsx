@@ -1,10 +1,16 @@
-import { Button } from '@/components/UI/Button';
-import MovingGradient from '@/components/UI/MovingGradient';
-import Link from 'next/link';
+import Link from 'next/link'
+import { auth } from '@clerk/nextjs'
 
-export default function Home() {
+import { Button } from '@/components/UI/Button'
+import MovingGradient from '@/components/UI/MovingGradient'
+
+const Homepage = () => {
+  const { userId } = auth()
+  const href = userId ? '/my-journal' : '/new-user'
+  const linkText = userId ? 'My Journal' : 'Sign up'
+
   return (
-    <div className="w-screen h-screen bg-gray-100 dark:bg-darkGray flex justify-center items-center text-white relative">
+    <div className="h-screen bg-gray-100 dark:bg-darkGray flex justify-center items-center text-white relative">
       <MovingGradient className="pointer-events-none" />
       <article className="w-full max-w-[40rem] mx-auto">
         <h1 className="text-4xl w-2/3 mb-4">Welcome to Reflective Ink.</h1>
@@ -12,9 +18,11 @@ export default function Home() {
           An AI-powered app for tracking your mood. Interested in learning more?
         </p>
         <Button size="xl" asChild>
-          <Link href="/my-journal">Get Started</Link>
+          <Link href={href}>{linkText}</Link>
         </Button>
       </article>
     </div>
-  );
+  )
 }
+
+export default Homepage
