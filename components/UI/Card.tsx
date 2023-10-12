@@ -1,5 +1,3 @@
-'use client'
-
 import * as React from 'react'
 
 import classnameJoin from '@/utils/ui'
@@ -11,7 +9,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={classnameJoin(
-      'rounded-xl border bg-white text-gray-950 dark:border-gray-800 dark:shadow-[0_3px_10px_rgb(98,98,98,0.15)] dark:bg-darkGray dark:text-gray-50',
+      'rounded-xl bg-white text-gray-950 dark:bg-darkGray dark:text-textLight',
       className,
     )}
     {...props}
