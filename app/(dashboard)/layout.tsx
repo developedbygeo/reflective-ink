@@ -1,6 +1,6 @@
 import { userButtonStyle } from '@/common/clerkStyling';
 import ThemeToggle from '@/components/theme/ThemeToggle';
-import DashboardSidebar from '@/modules/DashboardSidebar';
+import DashboardSidebar from '@/components/modules/DashboardSidebar';
 import { WithChildren } from '@/types/UI';
 import { UserButton } from '@clerk/nextjs';
 
