@@ -34,7 +34,7 @@ model Entry {
 
   analysis Analysis? // 1-to-1 relationship. Optional because Entry is required, so if Analysis is not optional, we cannot create either.
 
-  @@index([userId]) // indexing userId because relationMode="prisma" is used and we need to generate the foreign key
+  @@unique([userId, id])
 }
 
 model Analysis {
