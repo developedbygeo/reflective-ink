@@ -3,6 +3,9 @@
 const defaults = require('tailwindcss/defaultTheme');
 
 module.exports = {
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -23,8 +26,17 @@ module.exports = {
         sans: ['var(--font-source)'],
         display: ['var(--font-open)'],
       },
+      boxShadow: {
+        neumorphicTopLeft:
+          '1rem 1rem 2.5rem rgba(26, 26, 26, 0.6), -1rem -1rem 2.5rem #272727',
+      },
       colors: {
-        darkGray: '#292929',
+        brand: '#584FBB',
+        brandDarker: '#413993',
+        textMid: '#B8B6C8',
+        textLight: '#D6DEE7',
+        textLightest: '#F0EDED',
+        darkGray: '#212121',
         darkerGray: '#121212',
       },
       keyframes: {
