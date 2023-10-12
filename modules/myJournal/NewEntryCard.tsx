@@ -17,8 +17,16 @@ import { Textarea } from '@/components/UI/Textarea'
 import { createNewJournalEntry } from '@/utils/api'
 import { NewJournalEntryData } from '@/types/forms'
 import InputError from '@/components/UI/InputError'
+import { useState } from 'react'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/UI/Accordion'
 
 const NewEntryCard = () => {
+  const [expanded, setExpanded] = useState(false)
   const router = useRouter()
   const {
     register,
@@ -36,40 +44,51 @@ const NewEntryCard = () => {
     resetField('content')
   }
 
-  console.log(errors.content)
-
   return (
-    <Card className="col-span-2">
-      <CardHeader>
-        <CardTitle>Add a new entry</CardTitle>
-        <CardDescription className="font-light">
-          Remember, you have to write something first
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form className="relative" onSubmit={handleSubmit(handleNewEntry)}>
-          <Label htmlFor="new-entry">What is on your mind?</Label>
-          <Textarea
-            {...register('content', { required: 'This field is required' })}
-            className="w-full"
-            id="new-entry"
-            placeholder="I am all ears..."
-          />
-          {errors.content && (
-            <InputError
-              className="absolute -bottom-2"
-              errorMessage={errors.content.message}
-            />
-          )}
-        </form>
-      </CardContent>
-      <CardFooter className="flex justify-between mt-8">
-        <Button onClick={handleReset} variant="outline">
-          Cancel
-        </Button>
-        <Button onClick={handleSubmit(handleNewEntry)}>Deploy</Button>
-      </CardFooter>
-    </Card>
+    <Accordion
+      type="single"
+      style={{ gridColumn: 'span 3 / span 3' }}
+      collapsible
+      className="w-full col-span-3"
+    >
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Ready to add an entry?</AccordionTrigger>
+        <AccordionContent>
+          <Card className="col-span-2">
+            <CardContent>
+              <form
+                className="relative"
+                onSubmit={handleSubmit(handleNewEntry)}
+              >
+                <Label htmlFor="new-entry">What is on your mind?</Label>
+                <Textarea
+                  {...register('content', {
+                    required: 'This field is required',
+                  })}
+                  className="w-full"
+                  id="new-entry"
+                  placeholder="..."
+                />
+                {errors.content && (
+                  <InputError
+                    className="absolute -bottom-2"
+                    errorMessage={errors.content.message}
+                  />
+                )}
+              </form>
+            </CardContent>
+            <CardFooter className="flex justify-start gap-6 mt-8">
+              <Button onClick={handleReset} variant="outline">
+                Cancel
+              </Button>
+              <Button size="lg" onClick={handleSubmit(handleNewEntry)}>
+                Add
+              </Button>
+            </CardFooter>
+          </Card>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   )
 }
 

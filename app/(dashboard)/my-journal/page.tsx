@@ -14,7 +14,7 @@ const MyJournalPage = async () => {
   return (
     <div className="max-w-6xl mx-auto mt-20">
       <h2 className="mb-8 text-2xl">My Journal</h2>
-      <section className="grid grid-cols-3 gap-4 mt-8">
+      <section className="grid grid-cols-3 gap-12 mt-8">
         <NewEntryCard />
         {entries.map((entry) => (
           <EntryCard entry={entry} key={entry.id} />
