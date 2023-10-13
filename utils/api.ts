@@ -1,9 +1,25 @@
 export const constructURL = (path: string) => window.location.origin + path;
 
-export const createNewJournalEntry = async (content: string) => {
+export const sendRequestForNewEntry = async (content: string) => {
   const res = await fetch(
     new Request(constructURL('/api/journal'), {
       method: 'POST',
+      body: JSON.stringify({
+        content,
+      }),
+    }),
+  );
+
+  if (res.ok) {
+    const data = await res.json();
+    return data.data;
+  }
+};
+
+export const sendRequestForEntryUdate = async (id: string, content: string) => {
+  const res = await fetch(
+    new Request(constructURL(`/api/journal/${id}`), {
+      method: 'PATCH',
       body: JSON.stringify({
         content,
       }),
