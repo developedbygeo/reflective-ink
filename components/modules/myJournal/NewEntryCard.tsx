@@ -5,16 +5,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button } from '@/components/UI/Button';
 import { Label } from '@/components/UI/Label';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/UI/Card';
+import { Card, CardContent, CardFooter } from '@/components/UI/Card';
 import { Textarea } from '@/components/UI/Textarea';
-import { createNewJournalEntry } from '@/utils/api';
+import { sendRequestForNewEntry } from '@/utils/api';
 import { NewJournalEntryData } from '@/types/forms';
 import InputError from '@/components/UI/InputError';
 import { useState } from 'react';
@@ -36,8 +29,8 @@ const NewEntryCard = () => {
   } = useForm<NewJournalEntryData>();
 
   const handleNewEntry: SubmitHandler<NewJournalEntryData> = async (data) => {
-    const journalData = await createNewJournalEntry(data.content);
-    router.replace(`my-journal/${journalData.id}`);
+    const journalData = await sendRequestForNewEntry(data.content);
+    // router.push(`my-journal/${journalData.id}`);
   };
 
   const handleReset = () => {
