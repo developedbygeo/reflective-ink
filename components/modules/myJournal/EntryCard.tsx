@@ -24,13 +24,13 @@ const EntryCard = ({ className, animation, entry }: EntryCardProps) => {
   return (
     <div className={classnameJoin('relative', className)}>
       <div
-        className="absolute inset-0 -bottom-2 animate-pulse delay-300 h-full w-full bg-gradient-to-r from-red-100 to-blue-500 transform scale-[0.8] bg-red-500 rounded-full blur-[2.25rem] z-0"
+        className="absolute inset-0 -bottom-2 animate-pulse delay-300 h-full w-full bg-gradient-to-r from-red-100 to-purple-900 transform scale-[0.8] rounded-full blur-[2.25rem] z-0"
         style={{
           animationDelay: animation.delay,
           animationDuration: animation.duration,
         }}
       />
-      <Card className="shadow-neumorphicTopLeft relative z-20">
+      <Card className="relative z-20 bg-darkGray shadow-neumorphicTopLeft">
         <CardContent className="px-5 py-4 space-y-4 text-textLight">
           <CardDescription className="mt-3 text-textLight">
             {entry.content}
