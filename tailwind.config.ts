@@ -28,7 +28,7 @@ module.exports = {
       },
       boxShadow: {
         neumorphicTopLeft:
-          '1rem 1rem 2.5rem rgba(26, 26, 26, 0.6), -1rem -1rem 2.5rem #272727',
+          '0.1rem 0.1rem 0.1rem rgba(26, 26, 26, 0.9), -0.1rem -0.1rem 0.1rem rgba(255, 255, 255, 0.1)',
       },
       colors: {
         brand: '#584FBB',
