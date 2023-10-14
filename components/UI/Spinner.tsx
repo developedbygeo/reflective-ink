@@ -1,7 +1,5 @@
-'use client'
-
-import { CommonProps } from '@/types/UI'
-import classnameJoin from '@/utils/ui'
+import { CommonProps } from '@/types/UI';
+import classnameJoin from '@/utils/ui';
 
 const Spinner = ({ className }: CommonProps) => (
   <>
@@ -28,6 +26,6 @@ const Spinner = ({ className }: CommonProps) => (
       <span className="sr-only">Loading...</span>
     </div>
   </>
-)
+);
 
-export default Spinner
+export default Spinner;
