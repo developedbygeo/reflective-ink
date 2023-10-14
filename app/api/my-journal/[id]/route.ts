@@ -7,8 +7,9 @@ export const PATCH = async (
   request: NextRequest,
   { params }: { params: { id: string } },
 ) => {
-  const content = await request.json();
-  const updatedEntry = await updateJournalEntry(params.id, content);
+  const data = await request.json();
+
+  const updatedEntry = await updateJournalEntry(params.id, data.content);
 
   return NextResponse.json({ data: updatedEntry });
 };
