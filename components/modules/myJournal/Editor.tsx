@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useReducer, useState } from 'react';
 import { debounce } from 'lodash';
 import { Entry } from '@prisma/client';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-import useEditorSubmit from '@/hooks/useEditorSubmit';
 import { sendRequestForEntryUdate } from '@/utils/api';
 
 import { Textarea } from '@/components/UI/Textarea';
@@ -21,45 +21,37 @@ import {
 } from '@/components/UI/AlertDialog';
 import Spinner from '@/components/UI/Spinner';
 import { Button } from '@/components/UI/Button';
+import InputError from '@/components/UI/InputError';
 
 type EditorProps = {
   entry: Entry | null;
 };
 
-const Editor = ({ entry }: EditorProps) => {
-  const [open, toggleOpen] = useReducer((open) => !open, false);
-  const {
-    isLoading,
-    isSubmitted,
-    value,
-    setIsLoading,
-    setIsSubmitted,
-    setValue,
-  } = useEditorSubmit();
+type EditorForm = {
+  content: string;
+};
 
-  useEffect(() => {
-    if (entry && entry.content) {
-      setValue(entry.content);
-    }
-  }, [entry, entry?.content]);
+const Editor = ({ entry }: EditorProps) => {
+  const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    resetField,
+    setError,
+    watch,
+    trigger,
+    formState: { errors },
+  } = useForm<EditorForm>();
 
   const ctaButtonText = isLoading ? 'Saving...' : 'Save';
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      debounce(() => {
-        setValue(e.target.value);
-      }, 1000)();
-    },
-    [],
-  );
-
-  const handleSave = async () => {
-    if (entry && entry.id && value) {
+  const handleSave: SubmitHandler<EditorForm> = async ({ content }) => {
+    if (entry && entry.id) {
       setIsLoading(true);
       const updated = await sendRequestForEntryUdate(
         entry.id,
-        value.toString(),
+        content.toString(),
       );
       setIsLoading(false);
     }
@@ -68,15 +60,28 @@ const Editor = ({ entry }: EditorProps) => {
   if (!entry) return null;
 
   return (
-    <>
+    <form>
       <div className="w-full h-full">
-        <Textarea onChange={handleChange} defaultValue={entry.content} />
+        <fieldset onBlur={() => trigger('content')} className="relative">
+          <Textarea
+            {...register('content', { required: 'This field is required' })}
+            defaultValue={entry.content}
+          />
+          {errors.content && (
+            <InputError
+              className="absolute -bottom-8"
+              errorMessage={errors.content.message}
+            />
+          )}
+        </fieldset>
       </div>
-      <AlertDialog open={open} onOpenChange={toggleOpen}>
+      <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogTrigger asChild>
-          <Button>Update Entry</Button>
+          <Button disabled={Boolean(errors.content?.message)} className="mt-12">
+            Update Entry
+          </Button>
         </AlertDialogTrigger>
-        <AlertDialogContent onMouseDown={toggleOpen}>
+        <AlertDialogContent onMouseDown={() => setOpen(false)}>
           <AlertDialogHeader>
             <AlertDialogTitle>
               Do you want to update this entry?
@@ -87,9 +92,12 @@ const Editor = ({ entry }: EditorProps) => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={toggleOpen}>Cancel</AlertDialogCancel>
+            <Button size="lg" variant="outline" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
             <Button
-              onClick={handleSave}
+              size="lg"
+              onClick={handleSubmit(handleSave)}
               className="flex items-center justify-start gap-1"
             >
               {isLoading && (
@@ -103,7 +111,7 @@ const Editor = ({ entry }: EditorProps) => {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>
+    </form>
   );
 };
 
