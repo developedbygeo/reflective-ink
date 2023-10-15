@@ -1,16 +1,17 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
+
+import { sendRequestForNewEntry } from '@/utils/api';
+import { NewJournalEntryData } from '@/types/forms';
 
 import { Button } from '@/components/UI/Button';
 import { Label } from '@/components/UI/Label';
 import { Card, CardContent, CardFooter } from '@/components/UI/Card';
 import { Textarea } from '@/components/UI/Textarea';
-import { sendRequestForNewEntry } from '@/utils/api';
-import { NewJournalEntryData } from '@/types/forms';
 import InputError from '@/components/UI/InputError';
-import { useState } from 'react';
 import {
   Accordion,
   AccordionContent,
