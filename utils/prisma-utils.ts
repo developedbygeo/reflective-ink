@@ -12,9 +12,6 @@ export const getJournalEntries = async (
     orderBy: {
       createdAt,
     },
-    include: {
-      analysis: true,
-    },
   });
 
   return entries;
