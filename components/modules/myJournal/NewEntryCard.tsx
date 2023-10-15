@@ -28,9 +28,10 @@ const NewEntryCard = () => {
     formState: { errors },
   } = useForm<NewJournalEntryData>();
 
+  // TODO add loading state here
   const handleNewEntry: SubmitHandler<NewJournalEntryData> = async (data) => {
     const journalData = await sendRequestForNewEntry(data.content);
-    // router.push(`my-journal/${journalData.id}`);
+    router.push(`my-journal/${journalData.id}`);
   };
 
   const handleReset = () => {
