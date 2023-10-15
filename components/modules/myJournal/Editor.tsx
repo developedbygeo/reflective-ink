@@ -75,6 +75,7 @@ const Editor = ({ entry }: EditorProps) => {
           <Textarea
             cols={30}
             rows={10}
+            className="resize-none overflow-y-auto"
             {...register('content', { required: 'This field is required' })}
             defaultValue={entry.content}
           />
