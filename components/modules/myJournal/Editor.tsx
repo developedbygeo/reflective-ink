@@ -80,7 +80,6 @@ const Editor = ({ entry }: EditorProps) => {
             />
           )}
         </fieldset>
-        {isLoading && <p>Loading...</p>}
         <AlertDialog open={open} onOpenChange={setOpen}>
           <AlertDialogTrigger asChild>
             <Button
