@@ -1,9 +1,9 @@
 import { LuMenu } from 'react-icons/lu';
-import { ImMenu } from 'react-icons/im';
+
+import { WithChildren } from '@/types/UI';
+import navigationLinks from '@/data/navigationLinks';
 
 import { Button } from '@/components/UI/Button';
-import { Label } from '@/components/UI/Label';
-import { Input } from '@/components/UI/input';
 import {
   Sheet,
   SheetClose,
@@ -14,7 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/UI/Sheet';
-import { WithChildren } from '@/types/UI';
+import NavLink from '@/components/UI/NavLink';
 
 const DashboardSidebar = ({ children }: WithChildren) => {
   return (
@@ -36,29 +36,24 @@ const DashboardSidebar = ({ children }: WithChildren) => {
             Ready to embark on an AI-powered adventure?
           </SheetDescription>
         </SheetHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input
-              id="username"
-              defaultValue="@peduarte"
-              className="col-span-3"
-            />
-          </div>
-        </div>
-        <SheetFooter>
-          <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
-          </SheetClose>
-        </SheetFooter>
+        <ul className="mt-12 h-[80vh] flex flex-col gap-y-5">
+          {navigationLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <li key={link.name}>
+                <NavLink
+                  className="flex text-gray-400 items-center transition-colors gap-4"
+                  activeClassName="text-white"
+                  href={link.href}
+                >
+                  <Icon className="w-6 h-6" />
+                  <span>{link.name}</span>
+                </NavLink>
+              </li>
+            );
+          })}
+        </ul>
+        <SheetFooter>Not yet ready? Logout</SheetFooter>
       </SheetContent>
     </Sheet>
   );
