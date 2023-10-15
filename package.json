@@ -21,6 +21,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.4",
+    "langchain": "^0.0.167",
     "lodash": "^4.17.21",
     "next": "13.5.4",
     "next-themes": "^0.2.1",
@@ -30,7 +31,8 @@
     "react-icons": "^4.11.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "tailwindcss-fluid-type": "^2.0.3"
+    "tailwindcss-fluid-type": "^2.0.3",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.199",
@@ -38,6 +40,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
+    "encoding": "^0.1.13",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
     "postcss": "^8",
