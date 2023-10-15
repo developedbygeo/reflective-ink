@@ -22,6 +22,9 @@ module.exports = {
       },
     },
     extend: {
+      fontSize: {
+        md: '1.075rem',
+      },
       fontFamily: {
         sans: ['var(--font-source)'],
         display: ['var(--font-open)'],
@@ -55,5 +58,12 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('tailwindcss-fluid-type')],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('tailwindcss-fluid-type')({
+      values: {
+        md: [0, 1.075],
+      },
+    }),
+  ],
 };
