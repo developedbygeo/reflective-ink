@@ -3,15 +3,27 @@ import { NextResponse } from 'next/server';
 
 import { findUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
+import { analyze } from '@/utils/ai';
 
 export const POST = async () => {
   const user = await findUserByClerkId();
   const entry = await prisma.entry.create({
     data: {
       userId: user.id,
-      content: 'Hello world',
+      content:
+        'Today was a good day, I spent time with my family and we relaxed at the spa',
     },
   });
+
+  const analysis = await analyze(entry.content);
+  if (analysis) {
+    await prisma.analysis.create({
+      data: {
+        entryId: entry.id,
+        ...analysis,
+      },
+    });
+  }
 
   revalidatePath('/my-journal'); // once we hit this route, revalidate the /my-journal page to show the new entry. It basically
   // tells Next.js to clear the cache & re-render the page the next time it is requested.
