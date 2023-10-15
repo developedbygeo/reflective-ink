@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 const defaults = require('tailwindcss/defaultTheme');
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   future: {
@@ -19,6 +20,9 @@ module.exports = {
       padding: '2rem',
       screens: {
         '2xl': '1400px',
+        '3xl': '1600px',
+        '4xl': '1800px',
+        '5xl': '2000px',
       },
     },
     extend: {
@@ -64,6 +68,9 @@ module.exports = {
       values: {
         md: [0, 1.075],
       },
+    }),
+    plugin(({ addVariant }: any) => {
+      addVariant('group-active-link', ':merge(.group).active-link &');
     }),
   ],
 };
