@@ -62,14 +62,19 @@ const Editor = ({ entry }: EditorProps) => {
 
   return (
     <div className="grid grid-cols-12 container gap-4">
+      <h1 className="col-span-10 row-start-1 col-start-2 text-xl">
+        Entry - {entry?.id}
+      </h1>
       <Analysis
-        className="border-l col-start-10 col-span-3 border-black/10"
+        className="border-l mt-6 col-start-10 col-span-3 border-black/10"
         sentimentColor={entry?.analysis?.color}
         analysis={analysisData}
       />
-      <form className="col-start-2 col-span-7 row-start-1 self-center">
+      <form className="col-start-2 col-span-7 row-start-2 self-start mt-6">
         <fieldset onBlur={() => trigger('content')} className="relative">
           <Textarea
+            cols={30}
+            rows={10}
             {...register('content', { required: 'This field is required' })}
             defaultValue={entry.content}
           />

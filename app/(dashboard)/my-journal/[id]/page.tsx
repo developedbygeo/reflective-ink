@@ -13,9 +13,8 @@ const EntryPage = async ({ params }: EntryPageParams) => {
 
   return (
     <div className="w-full mt-32 h-full">
-      <section className="">
-        <h1 className="col-start-2 col-span-8">Entry {id}</h1>
-        <Editor className="" entry={entry} />
+      <section>
+        <Editor entry={entry} />
       </section>
     </div>
   );
