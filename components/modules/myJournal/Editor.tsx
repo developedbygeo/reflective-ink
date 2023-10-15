@@ -10,8 +10,6 @@ import { sendRequestForEntryUdate } from '@/utils/api';
 import { Textarea } from '@/components/UI/Textarea';
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
