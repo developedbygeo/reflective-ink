@@ -77,7 +77,3 @@ For a more detailed overview of the development & production dependencies, pleas
 A massive thank you to Frontend Masters for their guidance and quality material.
 
 <br>
-
-## License
-
-[MIT](./LICENSE.md)
