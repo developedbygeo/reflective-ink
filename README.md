@@ -71,9 +71,3 @@ For a more detailed overview of the development & production dependencies, pleas
 <https://developedbygeo.github.io/Audiophile/>
 
 <br> -->
-
-## Acknowledgements
-
-A massive thank you to Frontend Masters for their guidance and quality material.
-
-<br>
