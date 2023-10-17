@@ -32,7 +32,7 @@ const Answer = ({ answer }: AnswerProps) => {
         <Player ref={playerRef} src={Lightbulb} autoplay />
       </div>
       <div className="flex flex-col gap-3">
-        <h3>Here&apos; what the AI has to say:</h3>
+        <h3>Here&apos;s what the AI has to say:</h3>
         <p>{answer}</p>
       </div>
     </article>
