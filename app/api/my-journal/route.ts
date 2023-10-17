@@ -5,13 +5,13 @@ import { findUserByClerkId } from '@/utils/auth';
 import { prisma } from '@/utils/db';
 import { analyze } from '@/utils/ai';
 
-export const POST = async () => {
+export const POST = async (request: Request) => {
+  const { content } = await request.json();
   const user = await findUserByClerkId();
   const entry = await prisma.entry.create({
     data: {
       userId: user.id,
-      content:
-        'Today was a good day, I spent time with my family and we relaxed at the spa',
+      content,
     },
   });
 
