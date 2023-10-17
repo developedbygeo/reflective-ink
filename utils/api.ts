@@ -26,7 +26,21 @@ export const sendRequestForEntryUdate = async (id: string, content: string) => {
     }),
   );
 
-  console.log(res);
+  if (res.ok) {
+    const data = await res.json();
+    return data.data;
+  }
+};
+
+export const sendQaQuestion = async (question: string) => {
+  const res = await fetch(
+    new Request(constructURL('/api/question'), {
+      method: 'POST',
+      body: JSON.stringify({
+        question,
+      }),
+    }),
+  );
 
   if (res.ok) {
     const data = await res.json();
