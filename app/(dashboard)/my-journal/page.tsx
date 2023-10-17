@@ -6,6 +6,7 @@ import { generateNumberInRange } from '@/utils/misc';
 
 import EntryCard from '@/components/modules/myJournal/EntryCard';
 import NewEntryCard from '@/components/modules/myJournal/NewEntryCard';
+import Question from '@/components/modules/Question';
 
 const getEntries = async () => {
   const user = await findUserByClerkId();
@@ -18,7 +19,8 @@ const MyJournalPage = async () => {
   return (
     <div className="max-w-6xl mx-auto mt-20">
       <h2 className="mb-8 text-2xl">My Journal</h2>
-      <section className="grid grid-cols-3 gap-20 mt-8">
+      <Question />
+      <section className="grid grid-cols-3 gap-20 mt-20">
         <div className="w-full col-span-3">
           <NewEntryCard />
         </div>
