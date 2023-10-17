@@ -33,3 +33,9 @@ export type AugmentedEntry =
       content: string;
     })
   | null;
+
+export type QaEntry = {
+  id: string;
+  content: string;
+  createdAt: Date;
+};
