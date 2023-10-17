@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Reflective Ink
 
-## Getting Started
+<!-- <div style="display: flex">
+<img src='./public/sample-v.png' height='450px' width='200px' alt='mobile viewport - portrait mode'/>&nbsp;&nbsp;
+&nbsp;&nbsp;<img style="align-self: center" src='./public/sample-h.png' height='350px' width='500px'alt='tablet viewport - landscape mode'/>
+</div> -->
 
-First, run the development server:
+<br>
+<br>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+<!-- A React-based, fully responsive website that uses JSON data and combines creative & responsive design along with, high-end audio gear.
+
+This project was a lovely opportunity to follow a provided, structured Figma design and bring to life. The main challenge was implementing the design and its nuances, with drastic changes to the layout in terms of responsiveness, adding a certain degree of complexity, especiallly when trying to maintain DRY code.
+
+It implements lazy loading and it is based on TypeScript, React Router, Redux Toolkit, Styled Components and Framer Motion. For a detailed overview, please have a look at the [**Features**](#features) & [**Tech**](#tech) section.
+
+**Note**: All of the image assets, along with the design files were provided by Frontend Mentor, as part of the [_Audiophile e-commerce website_](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx) challenge. -->
+
+<br>
+
+<!-- ## Installation
+
+As this project was bootstrapped with React, the following scripts are available:
+
+**Install** the dependencies:
+
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the app in **development** mode:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<br> -->
 
-## Learn More
+## <a id='features'></a>Features
 
-To learn more about Next.js, take a look at the following resources:
+- GPT3.5 integration.
+- Authentication.
+- DB Management (MySQL & Prisma).
+- In-memory Vector DB.
+- Cosine Similarity for the search functionality.
+- App router.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## <a id='tech'></a>Tech
 
-## Deploy on Vercel
+- NextJS 13
+- TypeScript
+- Langchain
+- Zod
+- Clerk
+- Prisma
+- ShadCn
+- Framer Motion
+- Tailwind
+- React Icons
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<br>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For a more detailed overview of the development & production dependencies, please check `package.json`.
+
+<br>
+
+<!-- ## Live Version
+
+<https://developedbygeo.github.io/Audiophile/>
+
+<br> -->
+
+## Acknowledgements
+
+A massive thank you to Frontend Masters for their guidance and quality material.
+
+<br>
+
+## License
+
+[MIT](./LICENSE.md)
