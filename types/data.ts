@@ -39,3 +39,17 @@ export type QaEntry = {
   content: string;
   createdAt: Date;
 };
+
+export type HistoryAnalysis = {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: string;
+  entryId: string;
+  mood: string;
+  summary: string;
+  subject: string;
+  color: string;
+  negative: boolean;
+  sentimentScore: number;
+};
