@@ -50,3 +50,18 @@ export const updateJournalEntry = async (id: string, content: string) => {
 
   return updatedEntry;
 };
+
+export const getHistoryData = async () => {
+  const user = await findUserByClerkId();
+  const analysisTotal = await prisma.analysis.findMany({
+    where: {
+      userId: user.id,
+    },
+    orderBy: {
+      createdAt: 'asc',
+    },
+  });
+  const analysisSum = analysisTotal.reduce((a, b) => a + b.sentimentScore, 0);
+  const analysisAvg = Math.round(analysisSum / analysisTotal.length);
+  return { analysisTotal, analysisAvg };
+};
