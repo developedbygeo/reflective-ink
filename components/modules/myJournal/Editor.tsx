@@ -53,7 +53,6 @@ const Editor = ({ entry }: EditorProps) => {
     if (entry && entry.id) {
       setIsLoading(true);
       const data = await sendRequestForEntryUdate(entry.id, content.toString());
-      console.log(data);
       setAnalysis(data?.analysis);
       setIsLoading(false);
     }
