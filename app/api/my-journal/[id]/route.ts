@@ -17,6 +17,7 @@ export const PATCH = async (
     updatedAnalysis = await prisma.analysis.upsert({
       where: { entryId: updatedEntry.id },
       create: {
+        userId: updatedEntry.userId,
         entryId: updatedEntry.id,
         ...analysis,
       },
