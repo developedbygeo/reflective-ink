@@ -8,6 +8,7 @@ import {
 } from '@/components/UI/Card';
 import { CommonProps } from '@/types/UI';
 import classnameJoin from '@/utils/ui';
+import { EntryAnalysis } from '@/types/data';
 
 type EntryCardAnimation = {
   delay: string;
@@ -15,11 +16,15 @@ type EntryCardAnimation = {
 };
 
 type EntryCardProps = CommonProps & {
-  entry: Entry;
+  entry: Entry & {
+    analysis: EntryAnalysis | null;
+  };
+
   animation: EntryCardAnimation;
 };
 
 const EntryCard = ({ className, animation, entry }: EntryCardProps) => {
+  if (!entry || !entry.analysis) return null;
   const parsedCreatedAt = new Date(entry.createdAt).toDateString();
   return (
     <div className={classnameJoin('relative', className)}>
@@ -35,13 +40,23 @@ const EntryCard = ({ className, animation, entry }: EntryCardProps) => {
           <CardDescription className="mt-3 text-textLight">
             {entry.content}
           </CardDescription>
-          <CardDescription className="text-textLight">summary</CardDescription>
-          <CardDescription className="text-textLight">mood</CardDescription>
+          <CardDescription className="text-gray-400 flex gap-2">
+            Summary:
+            <span className="text-textLight capitalize">
+              {entry.analysis.summary}
+            </span>
+          </CardDescription>
+          <CardDescription className="text-gray-400 flex gap-2">
+            Mood:{' '}
+            <span className="text-textLight capitalize">
+              {entry.analysis.mood}
+            </span>
+          </CardDescription>
         </CardContent>
         <CardFooter>
-          <p>
+          <p className="text-gray-400 flex gap-2">
             Created at:
-            <span>{parsedCreatedAt}</span>
+            <span className="text-textLight capitalize">{parsedCreatedAt}</span>
           </p>
         </CardFooter>
       </Card>
