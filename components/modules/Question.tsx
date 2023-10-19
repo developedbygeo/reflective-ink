@@ -40,12 +40,12 @@ const Question = ({ className }: CommonProps) => {
     <div className={className}>
       <form
         onSubmit={handleSubmit(handleQuestion)}
-        className="flex items-center gap-4"
+        className="flex flex-col lg:flex-row items-center gap-4"
       >
         <div className="w-full relative">
           <Input
             {...register('question', { required: 'This field is required' })}
-            className="h-full py-3"
+            className="h-full min-h-[5rem] lg:min-h-0 py-3"
             type="text"
             placeholder="What is on your mind?"
           />
@@ -58,7 +58,7 @@ const Question = ({ className }: CommonProps) => {
         </div>
         <Button
           disabled={isLoading}
-          className="whitespace-nowrap flex items-center justify-center gap-3"
+          className="whitespace-nowrap w-full lg:w-auto flex items-center justify-center gap-3"
           size="lg"
           type="submit"
         >
