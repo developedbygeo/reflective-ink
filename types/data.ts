@@ -4,7 +4,7 @@ export type EntryAnalysis = {
   summary?: string;
   subject?: string;
   mood?: string;
-  negative?: string;
+  negative?: boolean;
 };
 
 export type EntryAnalysisData = {
