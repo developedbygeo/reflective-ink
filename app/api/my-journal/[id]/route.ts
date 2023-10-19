@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+
+import { updateJournalEntry } from '@/utils/prisma-utils';
+import { update } from '@/utils/actions';
 import { prisma } from '@/utils/db';
 import { analyze } from '@/utils/ai';
-import { updateJournalEntry } from '@/utils/prisma-utils';
 
 export const PATCH = async (
   request: NextRequest,
@@ -24,6 +26,8 @@ export const PATCH = async (
       update: analysis,
     });
   }
+
+  update(['/my-journal']);
 
   return NextResponse.json({
     data: { ...updatedEntry, analysis: updatedAnalysis },
