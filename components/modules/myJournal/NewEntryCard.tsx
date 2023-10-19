@@ -5,7 +5,9 @@ import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { sendRequestForNewEntry } from '@/utils/api';
+import classnameJoin from '@/utils/ui';
 import { NewJournalEntryData } from '@/types/forms';
+import { CommonProps } from '@/types/UI';
 
 import { Button } from '@/components/UI/Button';
 import { Label } from '@/components/UI/Label';
@@ -18,9 +20,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/UI/Accordion';
+import Spinner from '@/components/UI/Spinner';
 
-const NewEntryCard = () => {
-  const [expanded, setExpanded] = useState(false);
+const NewEntryCard = ({ className }: CommonProps) => {
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const {
     register,
@@ -29,9 +32,13 @@ const NewEntryCard = () => {
     formState: { errors },
   } = useForm<NewJournalEntryData>();
 
+  const ctaButtonText = isLoading ? 'Updating...' : 'Update';
+
   // TODO add loading state here
   const handleNewEntry: SubmitHandler<NewJournalEntryData> = async (data) => {
+    setIsLoading(true);
     const journalData = await sendRequestForNewEntry(data.content);
+    setIsLoading(false);
     router.push(`my-journal/${journalData.id}`);
   };
 
@@ -40,7 +47,11 @@ const NewEntryCard = () => {
   };
 
   return (
-    <Accordion type="single" collapsible className="w-full col-span-3">
+    <Accordion
+      type="single"
+      collapsible
+      className={classnameJoin('w-full col-span-3', className)}
+    >
       <AccordionItem value="item-1">
         <AccordionTrigger>Ready to add an entry?</AccordionTrigger>
         <AccordionContent>
@@ -55,7 +66,7 @@ const NewEntryCard = () => {
                   {...register('content', {
                     required: 'This field is required',
                   })}
-                  className="w-full"
+                  className="w-full h-40 resize-none"
                   id="new-entry"
                   placeholder="..."
                 />
@@ -71,8 +82,16 @@ const NewEntryCard = () => {
               <Button onClick={handleReset} variant="outline">
                 Cancel
               </Button>
-              <Button size="lg" onClick={handleSubmit(handleNewEntry)}>
-                Add
+              <Button
+                className="flex items-center justify-center gap-3"
+                disabled={isLoading}
+                size="lg"
+                onClick={handleSubmit(handleNewEntry)}
+              >
+                {isLoading && (
+                  <Spinner className="w-5 h-5 fill-white" aria-hidden="true" />
+                )}
+                <span>{ctaButtonText}</span>
               </Button>
             </CardFooter>
           </Card>
