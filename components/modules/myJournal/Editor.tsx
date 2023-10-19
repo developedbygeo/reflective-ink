@@ -60,16 +60,16 @@ const Editor = ({ entry }: EditorProps) => {
   if (!entry) return null;
 
   return (
-    <div className="grid grid-cols-12 container gap-4">
-      <h1 className="col-span-10 row-start-1 col-start-2 text-xl">
+    <div className="grid grid-cols-12 mx-4 lg:container gap-4">
+      <h1 className="col-span-12 lg:col-span-10 row-start-1 lg:col-start-2 text-xl">
         Entry - {entry?.id}
       </h1>
       <Analysis
-        className="border-l mt-6 col-start-10 col-span-3 border-black/10"
+        className="border-l mt-6 col-span-12 lg:col-start-10 border-black/10"
         sentimentColor={entry?.analysis?.color}
         analysis={analysisData}
       />
-      <form className="col-start-2 col-span-7 row-start-2 self-start mt-6">
+      <form className="lg:col-start-2 col-span-12 lg:col-span-7 row-start-2 self-start mt-6">
         <fieldset onBlur={() => trigger('content')} className="relative">
           <Textarea
             cols={30}
@@ -90,7 +90,7 @@ const Editor = ({ entry }: EditorProps) => {
             <Button
               size="lg"
               disabled={Boolean(errors.content?.message)}
-              className="mt-12 flex justify-start items-center gap-2"
+              className="mt-12 w-full lg:w-fit flex justify-center lg:justify-start items-center gap-2"
             >
               {isLoading && (
                 <Spinner className="w-5 h-5 fill-white" aria-hidden="true" />
