@@ -17,12 +17,12 @@ const getEntries = async () => {
 const MyJournalPage = async () => {
   const entries = await getEntries();
   return (
-    <div className="max-w-6xl mx-auto mt-20">
+    <div className="container mt-20">
       <h2 className="mb-8 text-2xl">My Journal</h2>
-      <Question />
+      <Question className="w-3/5" />
       <section className="grid grid-cols-3 gap-20 mt-20">
         <div className="w-full col-span-3">
-          <NewEntryCard />
+          <NewEntryCard className="w-3/5" />
         </div>
         {entries.map((entry) => {
           const delay = `${generateNumberInRange(100, 1000)}ms`;
