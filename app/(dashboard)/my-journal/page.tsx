@@ -16,19 +16,24 @@ const getEntries = async () => {
 
 const MyJournalPage = async () => {
   const entries = await getEntries();
+
   return (
-    <div className="container mt-20">
+    <div className="mx-4 lg:container mt-20">
       <h2 className="mb-8 text-2xl">My Journal</h2>
-      <Question className="w-3/5" />
+      <Question className="w-full lg:w-3/5" />
       <section className="grid grid-cols-3 gap-20 mt-20">
         <div className="w-full col-span-3">
-          <NewEntryCard className="w-3/5" />
+          <NewEntryCard className="w-full lg:w-3/5" />
         </div>
         {entries.map((entry) => {
           const delay = `${generateNumberInRange(100, 1000)}ms`;
           const duration = `${generateNumberInRange(2000, 5000)}ms`;
           return (
-            <Link key={entry.id} href={`/my-journal/${entry.id}`}>
+            <Link
+              className="col-span-3 lg:col-span-1"
+              key={entry.id}
+              href={`/my-journal/${entry.id}`}
+            >
               <EntryCard
                 animation={{ delay, duration }}
                 entry={entry}
