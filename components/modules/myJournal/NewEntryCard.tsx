@@ -23,7 +23,7 @@ import {
 import Spinner from '@/components/UI/Spinner';
 
 const NewEntryCard = ({ className }: CommonProps) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const {
     register,
