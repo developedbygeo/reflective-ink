@@ -18,15 +18,21 @@ const Analysis = ({ className, analysis, sentimentColor }: AnalysisProps) => {
           <SentimentFigure sentimentColor={sentimentColor} />
         </div>
         <ul>
-          {analysis.map((data) => (
-            <li
-              key={data.name}
-              className="flex px-2 py-4 border-b border-b-gray-300/10 justify-between"
-            >
-              <span className="text-md font-semibold">{data.name}</span>
-              <span>{data.value}</span>
-            </li>
-          ))}
+          {analysis.map((data) => {
+            const parsedValue =
+              typeof data.value === 'boolean'
+                ? data.value.toString()
+                : data.value;
+            return (
+              <li
+                key={data.name}
+                className="flex px-2 py-6 first:mt-4 lg:first:mt-0 lg:py-4 border-b border-b-gray-300/10 justify-between"
+              >
+                <span className="text-gray-400 font-semibold">{data.name}</span>
+                <span className="capitalize text-textLight">{parsedValue}</span>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
