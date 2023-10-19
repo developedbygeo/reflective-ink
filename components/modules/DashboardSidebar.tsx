@@ -42,12 +42,16 @@ const DashboardSidebar = ({ children }: WithChildren) => {
             return (
               <li key={link.name}>
                 <NavLink
-                  className="flex text-gray-400 items-center transition-colors gap-4"
+                  className="group"
                   activeClassName="text-white"
                   href={link.href}
                 >
-                  <Icon className="w-6 h-6" />
-                  <span>{link.name}</span>
+                  <SheetTrigger asChild>
+                    <div className="flex text-gray-400 group-hover:text-gray-100 transition-colors items-center gap-4">
+                      <Icon className="w-6 h-6 text-inherit" />
+                      <span className="text-inherit">{link.name}</span>
+                    </div>
+                  </SheetTrigger>
                 </NavLink>
               </li>
             );
