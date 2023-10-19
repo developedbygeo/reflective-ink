@@ -28,6 +28,11 @@ const promptParser = StructuredOutputParser.fromZodSchema(
       .describe(
         'A hexadecimal color code that represents the mood of the entry. Example #0101fe for blue representing happiness.',
       ),
+    sentimentScore: z
+      .number()
+      .describe(
+        'The sentiment of the text and rated between -10 and 10, where -10 is extremely negative, 0 is neutral and 10 is extremely positive.',
+      ),
   }),
 );
 
