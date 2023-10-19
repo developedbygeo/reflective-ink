@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { sendQaQuestion } from '@/utils/api';
+import { CommonProps } from '@/types/UI';
 
 import Answer from '@/components/modules/Answer';
 
@@ -16,7 +17,7 @@ type QuestionForm = {
   question: string;
 };
 
-const Question = () => {
+const Question = ({ className }: CommonProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState<undefined | string>(undefined);
   const {
@@ -36,7 +37,7 @@ const Question = () => {
   };
 
   return (
-    <div>
+    <div className={className}>
       <form
         onSubmit={handleSubmit(handleQuestion)}
         className="flex items-center gap-4"
